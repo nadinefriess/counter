@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { store } from '../app/app.store';
+import { from } from 'rxjs/observable/from';
+import { select } from 'ng2-redux';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Counter';
+  @select() count$;
+
+  onClickPlus(){
+    store.dispatch({type: 'INCREMENT'});
+  }
+
+  onClickMinus(){
+    store.dispatch({type: 'DECREMENT'});
+  }
 }
